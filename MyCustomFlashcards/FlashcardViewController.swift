@@ -38,7 +38,7 @@ class FlashcardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        flashcards = decodeFlashcards()
+        flashcards = newFlashcardQueue(flashcards: decodeFlashcards())
         if flashcards.size == 0 {
             label.numberOfLines = 3
             label.textColor = .red
@@ -58,7 +58,7 @@ class FlashcardViewController: UIViewController {
         if let fc = currentFlashcard {
             flashcards.add(fc)
         }
-        encodeFlashcards(flashcards: flashcards)
+        encodeFlashcards(flashcards: flashcards.array())
         super.viewWillDisappear(animated)
     }
     

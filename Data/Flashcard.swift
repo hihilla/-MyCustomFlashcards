@@ -9,7 +9,7 @@ import Foundation
 
 class Flashcard: Codable {
     let key: String
-    let meanings: [String]
+    var meanings: Set<String>
     var successes = 0
     var seen = 0
     
@@ -22,7 +22,7 @@ class Flashcard: Codable {
     
     init(_ key: String, meanings: [String], successes: Int = 0, seen: Int = 0) {
         self.key = key
-        self.meanings = meanings
+        self.meanings = Set(meanings)
         self.successes = successes
         self.seen = seen
     }
@@ -51,7 +51,7 @@ class Flashcard: Codable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
-        meanings = try container.decode([String].self, forKey: .meanings)
+        meanings = try container.decode(Set<String>.self, forKey: .meanings)
         successes = try container.decode(Int.self, forKey: .successes)
         seen = try container.decode(Int.self, forKey: .seen)
     }
@@ -85,14 +85,13 @@ func newFlashcardQueue(flashcards: [Flashcard]) -> PriorityQueue<Flashcard> {
     return q
 }
 
-func encodeFlashcards(flashcards: PriorityQueue<Flashcard>) {
+func encodeFlashcards(flashcards: [Flashcard]) {
     do {
         // Create JSON Encoder
         let encoder = JSONEncoder()
         
         // Encode Flashcards
-        let fcs = flashcards.array()
-        let data = try encoder.encode(fcs)
+        let data = try encoder.encode(flashcards)
         // Write/Set Data
         UserDefaults.standard.set(data, forKey: "flashcards")
         
@@ -101,7 +100,7 @@ func encodeFlashcards(flashcards: PriorityQueue<Flashcard>) {
     }
 }
 
-func decodeFlashcards() -> PriorityQueue<Flashcard> {
+func decodeFlashcards() -> [Flashcard] {
     // Read/Get Data
     if let data = UserDefaults.standard.data(forKey: "flashcards") {
         do {
@@ -111,11 +110,11 @@ func decodeFlashcards() -> PriorityQueue<Flashcard> {
 
             // Decode Flashcards
             let fcs = try decoder.decode([Flashcard].self, from: data)
-            return newFlashcardQueue(flashcards: fcs)
+            return fcs
             
         } catch {
             print("Unable to Decode Flashcards (\(error))")
         }
     }
-    return newFlashcardQueue(flashcards: [])
+    return []
 }

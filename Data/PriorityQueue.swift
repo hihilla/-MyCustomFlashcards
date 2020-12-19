@@ -30,6 +30,7 @@ class PriorityQueue<DataType: Comparable> {
 extension PriorityQueue: Queue {
   @discardableResult
   public func add(_ item: DataType) -> Bool {
+    
     self.queue.append(item)
     self.heapifyUp(from: self.queue.count - 1)
     return true

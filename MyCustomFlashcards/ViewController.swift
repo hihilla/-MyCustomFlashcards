@@ -12,17 +12,12 @@ import UniformTypeIdentifiers
 class ViewController: UIViewController {
     @IBOutlet var addFromCsvButton: UIButton!
     @IBOutlet var practiceButton: UIButton!
-
-    var flashcards: PriorityQueue<Flashcard> = newFlashcardQueue(flashcards: [])
     
     override func viewWillAppear(_ animated: Bool) {
-        flashcards = decodeFlashcards()
-        
         super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        encodeFlashcards(flashcards: flashcards)
         super.viewWillDisappear(animated)
     }
     
@@ -49,9 +44,26 @@ extension ViewController: UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for u in urls {
-            print(u.absoluteURL)
-            let fcs = parseCSVintoFlashcardsArray(u.path)
-            _ = flashcards.add(fcs)
+            let storedFlashcards = decodeFlashcards()
+            var cardsDic: [String: Flashcard] = [:]
+            for card in storedFlashcards {
+                cardsDic[card.key] = card
+            }
+            
+            let parsedFCs = parseCSVintoFlashcardsArray(u.path)
+            for newCard in parsedFCs {
+                let existingCard = cardsDic[newCard.key]
+                if existingCard != nil {
+                    existingCard?.meanings.formUnion(newCard.meanings)
+                } else {
+                    cardsDic[newCard.key] = newCard
+                }
+            }
+
+            var flashcards: [Flashcard] = []
+            for kaka in cardsDic.values {
+                flashcards.append(kaka)
+            }
             encodeFlashcards(flashcards: flashcards)
         }
     }
