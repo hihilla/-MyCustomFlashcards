@@ -60,7 +60,7 @@ func buildFlashcards(from dataString: String) -> [Flashcard] {
             }
             
             // Put the values into the tuple and add it to the items array
-            let item = Flashcard(values[0], meaning: values[1])
+            let item = Flashcard(values[0], meanings: [values[1]])
             items.append(item)
         }
     }

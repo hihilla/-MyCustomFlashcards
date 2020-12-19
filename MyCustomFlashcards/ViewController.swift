@@ -10,12 +10,14 @@ import CoreServices
 import UniformTypeIdentifiers
 
 class ViewController: UIViewController {
-    @IBOutlet var flashcardsSizeLabel: UILabel!
+    @IBOutlet var addFromCsvButton: UIButton!
+    @IBOutlet var practiceButton: UIButton!
+
     var flashcards: PriorityQueue<Flashcard> = newFlashcardQueue(flashcards: [])
     
     override func viewWillAppear(_ animated: Bool) {
         flashcards = decodeFlashcards()
-        flashcardsSizeLabel.text = "There are \(flashcards.size) flashcards"
+        
         super.viewWillAppear(animated)
     }
     
@@ -31,9 +33,6 @@ class ViewController: UIViewController {
     }
 
 
-    func roundButtons() {
-        
-    }
 }
 
 extension ViewController: UIDocumentPickerDelegate {

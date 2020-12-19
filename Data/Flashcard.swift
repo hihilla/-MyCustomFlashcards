@@ -9,20 +9,20 @@ import Foundation
 
 class Flashcard: Codable {
     let key: String
-    let meaning: String
+    let meanings: [String]
     var successes = 0
     var seen = 0
     
     enum CodingKeys: String, CodingKey {
         case key
-        case meaning
+        case meanings
         case successes
         case seen
     }
     
-    init(_ key: String, meaning: String, successes: Int = 0, seen: Int = 0) {
+    init(_ key: String, meanings: [String], successes: Int = 0, seen: Int = 0) {
         self.key = key
-        self.meaning = meaning
+        self.meanings = meanings
         self.successes = successes
         self.seen = seen
     }
@@ -35,11 +35,15 @@ class Flashcard: Codable {
         self.successes += 1
     }
     
+    func meaning() -> String {
+        meanings.joined(separator: " / ")
+    }
+    
     // MARK: Codable
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(key, forKey: .key)
-        try container.encode(meaning, forKey: .meaning)
+        try container.encode(meanings, forKey: .meanings)
         try container.encode(successes, forKey: .successes)
         try container.encode(seen, forKey: .seen)
     }
@@ -47,7 +51,7 @@ class Flashcard: Codable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
-        meaning = try container.decode(String.self, forKey: .meaning)
+        meanings = try container.decode([String].self, forKey: .meanings)
         successes = try container.decode(Int.self, forKey: .successes)
         seen = try container.decode(Int.self, forKey: .seen)
     }
@@ -101,9 +105,10 @@ func decodeFlashcards() -> PriorityQueue<Flashcard> {
     // Read/Get Data
     if let data = UserDefaults.standard.data(forKey: "flashcards") {
         do {
+//            UserDefaults.standard.removeObject(forKey: "flashcards")
             // Create JSON Decoder
             let decoder = JSONDecoder()
-            
+
             // Decode Flashcards
             let fcs = try decoder.decode([Flashcard].self, from: data)
             return newFlashcardQueue(flashcards: fcs)

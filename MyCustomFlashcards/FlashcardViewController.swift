@@ -40,13 +40,17 @@ class FlashcardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         flashcards = decodeFlashcards()
         if flashcards.size == 0 {
+            label.numberOfLines = 3
+            label.textColor = .red
             label.text = "No cards! Swipe down and import some cards"
+        } else {
+            currentFlashcard = flashcards.dequeue()
+            currentFlashcard?.see()
+            label.text = currentFlashcard?.key
         }
-        currentFlashcard = flashcards.dequeue()
-        currentFlashcard?.see()
-        label.text = currentFlashcard?.key
+        
         hideButtons()
-        print(currentFlashcard?.key ?? "")
+        
         super.viewWillAppear(animated)
     }
     
@@ -92,7 +96,7 @@ class FlashcardViewController: UIViewController {
     
     fileprivate func setMeaningCard() {
         typeOfCard = .meaning
-        label.text = currentFlashcard?.meaning
+        label.text = currentFlashcard?.meaning()
         unhideButtons()
     }
     

@@ -24,6 +24,7 @@
 		AF25A8E9258D635700284C2D /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A8E8258D635700284C2D /* CSV.swift */; };
 		AF25A8ED258D6A6D00284C2D /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A8E8258D635700284C2D /* CSV.swift */; };
 		AF25A90C258E393900284C2D /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A90B258E393900284C2D /* FlashcardViewController.swift */; };
+		AFA476BA258E54E600E7B088 /* UIBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA476B9258E54E600E7B088 /* UIBorderedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		AF25A8E8258D635700284C2D /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		AF25A907258E19D700284C2D /* MyCustomFlashcards.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCustomFlashcards.entitlements; sourceTree = "<group>"; };
 		AF25A90B258E393900284C2D /* FlashcardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
+		AFA476B9258E54E600E7B088 /* UIBorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBorderedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				AF25A86E258D518400284C2D /* LaunchScreen.storyboard */,
 				AF25A871258D518400284C2D /* Info.plist */,
 				AF25A90B258E393900284C2D /* FlashcardViewController.swift */,
+				AFA476B9258E54E600E7B088 /* UIBorderedButton.swift */,
 			);
 			path = MyCustomFlashcards;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFA476BA258E54E600E7B088 /* UIBorderedButton.swift in Sources */,
 				AF25A868258D517D00284C2D /* ViewController.swift in Sources */,
 				AF25A8E0258D60E100284C2D /* Queue.swift in Sources */,
 				AF25A864258D517D00284C2D /* AppDelegate.swift in Sources */,
