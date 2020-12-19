@@ -23,6 +23,7 @@
 		AF25A8E4258D60E400284C2D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A89A258D524E00284C2D /* Flashcard.swift */; };
 		AF25A8E9258D635700284C2D /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A8E8258D635700284C2D /* CSV.swift */; };
 		AF25A8ED258D6A6D00284C2D /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A8E8258D635700284C2D /* CSV.swift */; };
+		AF25A90C258E393900284C2D /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF25A90B258E393900284C2D /* FlashcardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		AF25A8CD258D5C2E00284C2D /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		AF25A8E8258D635700284C2D /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		AF25A907258E19D700284C2D /* MyCustomFlashcards.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCustomFlashcards.entitlements; sourceTree = "<group>"; };
+		AF25A90B258E393900284C2D /* FlashcardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				AF25A86C258D518400284C2D /* Assets.xcassets */,
 				AF25A86E258D518400284C2D /* LaunchScreen.storyboard */,
 				AF25A871258D518400284C2D /* Info.plist */,
+				AF25A90B258E393900284C2D /* FlashcardViewController.swift */,
 			);
 			path = MyCustomFlashcards;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				AF25A89B258D524E00284C2D /* Flashcard.swift in Sources */,
 				AF25A8ED258D6A6D00284C2D /* CSV.swift in Sources */,
 				AF25A866258D517D00284C2D /* SceneDelegate.swift in Sources */,
+				AF25A90C258E393900284C2D /* FlashcardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

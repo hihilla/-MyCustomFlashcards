@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,8 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1HQ-ku-C27">
-                                <rect key="frame" x="40" y="114" width="334" height="30"/>
+                                <rect key="frame" x="40" y="114" width="334" height="39"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Add more cards from CSV">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="medium" weight="light">
@@ -29,23 +31,147 @@
                                     <action selector="onTouchUpInsideAddCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wUN-KE-NSc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8s-nS-PG8">
+                                <rect key="frame" x="68" y="428.5" width="278" height="39"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="Practice with your Flashcards"/>
+                                <connections>
+                                    <segue destination="EO6-dh-F5T" kind="presentation" id="6lj-2o-m4S"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9N-PB-xah">
+                                <rect key="frame" x="183" y="163" width="48" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="I9N-PB-xah" firstAttribute="top" secondItem="1HQ-ku-C27" secondAttribute="bottom" constant="10" id="21Y-Iy-AL1"/>
                             <constraint firstItem="1HQ-ku-C27" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="4k1-Ld-i6m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1HQ-ku-C27" secondAttribute="trailing" constant="40" id="9fP-Ch-2iD"/>
                             <constraint firstItem="1HQ-ku-C27" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Asb-TM-bwe"/>
-                            <constraint firstItem="1HQ-ku-C27" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="vm3-OH-emF"/>
+                            <constraint firstItem="I9N-PB-xah" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oqi-Mb-tOe"/>
+                            <constraint firstItem="c8s-nS-PG8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VC3-ld-kgb"/>
+                            <constraint firstItem="c8s-nS-PG8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zf1-87-76a"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="flashcardsSizeLabel" destination="I9N-PB-xah" id="cYS-ME-7qJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="70"/>
+            <point key="canvasLocation" x="137.68115942028987" y="69.642857142857139"/>
+        </scene>
+        <!--Flashcard View Controller-->
+        <scene sceneID="O8B-Vj-ALY">
+            <objects>
+                <viewController id="EO6-dh-F5T" customClass="FlashcardViewController" customModule="MyCustomFlashcards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gjE-e3-NBk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lPG-e6-WYj">
+                                <rect key="frame" x="10" y="224" width="394" height="394"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDO-kv-a2N">
+                                        <rect key="frame" x="157" y="0.0" width="80" height="197"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CtV-JP-Fdo">
+                                        <rect key="frame" x="0.0" y="197" width="394" height="197"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="center" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1S8-E6-ZOA">
+                                                <rect key="frame" x="0.0" y="0.0" width="197" height="197"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onTouchUpInsideNoButton:" destination="EO6-dh-F5T" eventType="touchUpInside" id="E1D-hc-JxD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="center" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdV-Su-5NE">
+                                                <rect key="frame" x="197" y="0.0" width="197" height="197"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="checkmark" catalog="system" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onTouchUpInsideYesButton:" destination="EO6-dh-F5T" eventType="touchUpInside" id="s77-Bw-j5J"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="1S8-E6-ZOA" firstAttribute="height" secondItem="CtV-JP-Fdo" secondAttribute="height" id="Lam-iL-G6l"/>
+                                            <constraint firstItem="mdV-Su-5NE" firstAttribute="height" secondItem="CtV-JP-Fdo" secondAttribute="height" id="YPr-qv-DEy"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lPG-e6-WYj" secondAttribute="height" multiplier="1:1" id="338-bV-EZ3"/>
+                                    <constraint firstItem="CtV-JP-Fdo" firstAttribute="width" secondItem="lPG-e6-WYj" secondAttribute="width" id="Ngc-mV-eg1"/>
+                                    <constraint firstItem="CtV-JP-Fdo" firstAttribute="height" secondItem="lPG-e6-WYj" secondAttribute="height" multiplier="0.2" priority="999" id="c6y-qI-4UB"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0mI-m9-vV3" appends="YES" id="0Y9-9G-Oc3"/>
+                                </connections>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gPG-h4-rf7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lPG-e6-WYj" firstAttribute="centerX" secondItem="gjE-e3-NBk" secondAttribute="centerX" id="FUL-Jb-mTz"/>
+                            <constraint firstItem="lPG-e6-WYj" firstAttribute="width" secondItem="gjE-e3-NBk" secondAttribute="width" constant="-20" id="Yhj-Cu-VNb"/>
+                            <constraint firstItem="lPG-e6-WYj" firstAttribute="centerY" secondItem="gjE-e3-NBk" secondAttribute="centerY" id="cHv-cw-AC1"/>
+                            <constraint firstItem="lPG-e6-WYj" firstAttribute="height" secondItem="gjE-e3-NBk" secondAttribute="height" constant="-20" id="yIY-qz-3aQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Yhj-Cu-VNb"/>
+                                <exclude reference="yIY-qz-3aQ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="Yhj-Cu-VNb"/>
+                                <include reference="yIY-qz-3aQ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Yhj-Cu-VNb"/>
+                                <exclude reference="yIY-qz-3aQ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="KDO-kv-a2N" id="wnd-Ra-Jlw"/>
+                        <outlet property="noButton" destination="1S8-E6-ZOA" id="6MV-MJ-Cic"/>
+                        <outlet property="yesButton" destination="mdV-Su-5NE" id="L9N-wc-je7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H22-MF-qg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0mI-m9-vV3">
+                    <connections>
+                        <action selector="onTapGestureRecognized:" destination="EO6-dh-F5T" id="zKm-Pb-Dys"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1089.8550724637682" y="-142.63392857142856"/>
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -11,29 +11,37 @@ class Flashcard: Codable {
     let key: String
     let meaning: String
     var successes = 0
+    var seen = 0
     
     enum CodingKeys: String, CodingKey {
-           case key
-           case meaning
-           case successes
-       }
+        case key
+        case meaning
+        case successes
+        case seen
+    }
     
-    init(_ key: String, meaning: String, successes: Int = 0) {
+    init(_ key: String, meaning: String, successes: Int = 0, seen: Int = 0) {
         self.key = key
         self.meaning = meaning
         self.successes = successes
+        self.seen = seen
+    }
+    
+    func see() {
+        self.seen += 1
     }
     
     func succeed() {
         self.successes += 1
     }
-
+    
     // MARK: Codable
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(key, forKey: .key)
         try container.encode(meaning, forKey: .meaning)
         try container.encode(successes, forKey: .successes)
+        try container.encode(seen, forKey: .seen)
     }
     
     required init(from decoder: Decoder) throws {
@@ -41,16 +49,24 @@ class Flashcard: Codable {
         key = try container.decode(String.self, forKey: .key)
         meaning = try container.decode(String.self, forKey: .meaning)
         successes = try container.decode(Int.self, forKey: .successes)
+        seen = try container.decode(Int.self, forKey: .seen)
     }
     
 }
 
 extension Flashcard: Comparable {
     static func < (lhs: Flashcard, rhs: Flashcard) -> Bool {
+        if lhs.successes == lhs.successes {
+            return lhs.seen < rhs.seen
+        }
         return lhs.successes < rhs.successes
     }
     
     static func == (lhs: Flashcard, rhs: Flashcard) -> Bool {
+        if lhs.successes == lhs.successes {
+            return lhs.seen == rhs.seen
+        }
+        
         return lhs.successes == rhs.successes
     }
 }
@@ -58,10 +74,10 @@ extension Flashcard: Comparable {
 
 // MARK: Utils
 func newFlashcardQueue(flashcards: [Flashcard]) -> PriorityQueue<Flashcard> {
+    var fcs = flashcards
+    fcs.shuffle()
     let q = PriorityQueue<Flashcard>()
-    for card in flashcards {
-        q.add(card)
-    }
+    _ = q.add(fcs)
     return q
 }
 
