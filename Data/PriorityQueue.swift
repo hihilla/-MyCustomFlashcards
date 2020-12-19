@@ -1,6 +1,6 @@
 //
 //  PriorityQueue.swift
-//  MyCustomFlashcardsTests
+//  MyCustomFlashcards
 //
 //  Created by Hilla on 12/18/20.
 //

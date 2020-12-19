@@ -8,11 +8,6 @@
 import Foundation
 
 func openCSV(fileName:String, fileType: String)-> String!{
-//    guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)
-//    else {
-//        return nil
-//    }
-//    print(filepath)
     do {
         let contents = try String(contentsOfFile: fileName, encoding: .utf8)
         
