@@ -104,7 +104,6 @@ func decodeFlashcards() -> [Flashcard] {
     // Read/Get Data
     if let data = UserDefaults.standard.data(forKey: "flashcards") {
         do {
-//            UserDefaults.standard.removeObject(forKey: "flashcards")
             // Create JSON Decoder
             let decoder = JSONDecoder()
 
@@ -117,4 +116,8 @@ func decodeFlashcards() -> [Flashcard] {
         }
     }
     return []
+}
+
+func clearData() {
+    UserDefaults.standard.removeObject(forKey: "flashcards")
 }
